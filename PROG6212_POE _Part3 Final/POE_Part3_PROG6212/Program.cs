@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using POE_Part2_PROG6212.Data;
-using POE_Part2_PROG6212.Models;
+using POE_Part3_PROG6212.Data;
+using POE_Part3_PROG6212.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

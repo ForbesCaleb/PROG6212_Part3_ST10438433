@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using POE_Part2_PROG6212.Models;
+using POE_Part3_PROG6212.Models;
 
-namespace POE_Part2_PROG6212.Data
+namespace POE_Part3_PROG6212.Data
 {
     public class ApplicationDbContext : DbContext
     {

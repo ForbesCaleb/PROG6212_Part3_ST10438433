@@ -1,5 +1,5 @@
 ﻿using Xunit;
-using POE_Part2_PROG6212.Models;
+using POE_Part3_PROG6212.Models;
 
 namespace CMCSTests
 {

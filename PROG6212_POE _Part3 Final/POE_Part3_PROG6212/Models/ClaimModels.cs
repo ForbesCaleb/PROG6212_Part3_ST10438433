@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
-namespace POE_Part2_PROG6212.Models
+namespace POE_Part3_PROG6212.Models
 {
     // ---------- View model for lecturer form ----------
     public class SubmitClaimViewModel

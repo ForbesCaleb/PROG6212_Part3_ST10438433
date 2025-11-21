@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace POE_Part2_PROG6212.Controllers
+namespace POE_Part3_PROG6212.Controllers
 {
     public class HomeController : Controller
     {

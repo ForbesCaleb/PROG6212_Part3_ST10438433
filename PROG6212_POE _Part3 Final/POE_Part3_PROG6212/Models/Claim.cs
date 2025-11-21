@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace POE_Part2_PROG6212.Models
+namespace POE_Part3_PROG6212.Models
 {
     public enum ClaimStatus
     {

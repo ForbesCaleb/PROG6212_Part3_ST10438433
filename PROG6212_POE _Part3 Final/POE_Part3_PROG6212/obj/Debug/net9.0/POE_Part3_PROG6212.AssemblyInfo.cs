@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("POE_Part3_PROG6212")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+517a0998f5f2cb4573a24b91e05e300f187b79da")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+96902341c6202da1913055bf58f32dc1ea0e549f")]
 [assembly: System.Reflection.AssemblyProductAttribute("POE_Part3_PROG6212")]
 [assembly: System.Reflection.AssemblyTitleAttribute("POE_Part3_PROG6212")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

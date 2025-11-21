@@ -1,4 +1,4 @@
-namespace POE_Part2_PROG6212.Models
+namespace POE_Part3_PROG6212.Models
 {
     public class ErrorViewModel
     {

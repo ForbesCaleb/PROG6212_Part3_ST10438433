@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using POE_Part2_PROG6212.Data;
-using POE_Part2_PROG6212.Models;
+using POE_Part3_PROG6212.Data;
+using POE_Part3_PROG6212.Models;
 
 // Alias to avoid name conflict with System.Security.Claims
-using DbClaim = POE_Part2_PROG6212.Models.Claim;
+using DbClaim = POE_Part3_PROG6212.Models.Claim;
 
-namespace POE_Part2_PROG6212.Controllers
+namespace POE_Part3_PROG6212.Controllers
 {
     [Authorize(Roles = "ProgrammeCoordinator,AcademicManager")]
     public class ManagementController : Controller
