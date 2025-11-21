@@ -1,0 +1,66 @@
+﻿@model SubmitClaimViewModel
+@{
+    ViewData["Title"] = "Submit Claim";
+}
+
+<h2 class="mb-4">Submit Claim</h2>
+
+<div class="card card-dark p-4">
+    <form asp-action="SubmitClaim" method="post" enctype="multipart/form-data">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label asp-for="DateWorked" class="form-label"></label>
+                <input asp-for="DateWorked" type="date"
+                       class="form-control bg-dark text-light border-secondary" />
+                <span asp-validation-for="DateWorked" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label asp-for="HoursWorked" class="form-label"></label>
+                <input asp-for="HoursWorked"
+                       class="form-control bg-dark text-light border-secondary" />
+                <span asp-validation-for="HoursWorked" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label asp-for="HourlyRate" class="form-label"></label>
+                <input asp-for="HourlyRate" readonly
+                       class="form-control bg-secondary text-light" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Activity" class="form-label"></label>
+            <input asp-for="Activity"
+                   class="form-control bg-dark text-light border-secondary" />
+            <span asp-validation-for="Activity" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Document" class="form-label"></label>
+            <input asp-for="Document" type="file" class="form-control bg-dark text-light" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Notes" class="form-label"></label>
+            <textarea asp-for="Notes"
+                      class="form-control bg-dark text-light border-secondary"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Calculated Total</label>
+            <input value="@Model.TotalAmount" readonly class="form-control bg-secondary text-light" />
+        </div>
+
+        <button class="btn btn-primary w-100">
+            <i data-lucide="send"></i> Submit Claim
+        </button>
+    </form>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>

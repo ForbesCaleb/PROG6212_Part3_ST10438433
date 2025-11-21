@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<div class="text-center mt-5">
+    <i data-lucide="shield-alert" style="width:70px; height:70px;"></i>
+
+    <h2 class="text-danger mt-3">Access Denied</h2>
+    <p class="text-light">You do not have permission to view this page.</p>
+
+    <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-light mt-3">
+        <i data-lucide="arrow-left"></i> Back to Dashboard
+    </a>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>

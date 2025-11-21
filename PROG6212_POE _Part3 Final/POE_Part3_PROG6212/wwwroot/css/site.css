@@ -1,0 +1,202 @@
+/* ================================================================
+   DARK NEO THEME — GLOBAL DESIGN SYSTEM
+   ================================================================ */
+:root {
+    --bg-main: #02040b;
+    --bg-layer-1: #0c0f1a;
+    --bg-layer-2: #131828;
+    --bg-sidebar: #0d1020;
+    --bg-card: #141a2b;
+    --text-main: #e5e9f0;
+    --text-muted: #7b88a1;
+    --accent: #3fd0ff;
+    --accent-strong: #4df3ff;
+    --accent-soft: rgba(63, 208, 255, 0.15);
+    --shadow-card: 0 18px 45px rgba(0,0,0,0.75);
+    --radius-md: 14px;
+    --radius-lg: 22px;
+}
+
+body {
+    background: radial-gradient(circle at top left, #1c2336 0%, #02040b 60%);
+    color: var(--text-main);
+    font-family: "Inter", system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ================================================================
+   SIDEBAR
+   ================================================================ */
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--bg-sidebar);
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    z-index: 1000;
+    padding-top: 20px;
+}
+
+    .sidebar .brand {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 1.3rem;
+        padding: 0 22px;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .sidebar .menu {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+        .sidebar .menu li {
+            margin-bottom: 8px;
+        }
+
+    .sidebar a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 18px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.95rem;
+        border-radius: var(--radius-md);
+        transition: 0.2s;
+    }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--accent-soft);
+            color: var(--accent-strong);
+            box-shadow: 0 0 12px var(--accent-soft);
+        }
+
+/* ================================================================
+   MAIN CONTENT AREA
+   ================================================================ */
+
+.main {
+    margin-left: 260px;
+    padding: 30px;
+}
+
+/* ================================================================
+   CARDS & UI ELEMENTS
+   ================================================================ */
+
+.card {
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 20px;
+}
+
+.metric-card {
+    position: relative;
+    overflow: hidden;
+}
+
+    .metric-card::before {
+        content: "";
+        position: absolute;
+        inset: -150%;
+        background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+        opacity: 0.4;
+    }
+
+/* ================================================================
+   TABLES
+   ================================================================ */
+
+.table {
+    background: var(--bg-layer-1);
+    color: var(--text-main);
+    border-color: rgba(255,255,255,0.05);
+}
+
+    .table thead {
+        background: var(--bg-layer-2);
+    }
+
+.table-hover tbody tr:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* ================================================================
+   FORMS
+   ================================================================ */
+
+.form-control,
+.form-select {
+    background: var(--bg-layer-1);
+    border: 1px solid rgba(255,255,255,0.05);
+    color: var(--text-main);
+    border-radius: var(--radius-md);
+}
+
+    .form-control:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 8px var(--accent);
+    }
+
+textarea.form-control {
+    border-radius: var(--radius-lg);
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    border: none;
+    color: #02040b;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+}
+
+    .btn-primary:hover {
+        background: var(--accent-strong);
+    }
+
+.btn-outline-light {
+    border-radius: var(--radius-md);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+    .btn-outline-light:hover {
+        background: var(--accent);
+        color: #02040b;
+    }
+
+/* ================================================================
+   BADGES (STATUS)
+   ================================================================ */
+
+.badge-status-approved {
+    background: rgba(46,204,113,0.2);
+    color: #2ecc71;
+}
+
+.badge-status-rejected {
+    background: rgba(255,75,129,0.2);
+    color: #ff4b81;
+}
+
+.badge-status-pending {
+    background: rgba(255,191,59,0.2);
+    color: #ffbf3b;
+}

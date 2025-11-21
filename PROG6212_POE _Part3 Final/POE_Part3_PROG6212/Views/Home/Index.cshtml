@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="height:85vh;">
+    <div class="text-center">
+        <h1 class="text-light mb-3">Welcome to CMCS</h1>
+        <p class="text-secondary mb-4">Claim Management & Coordination System</p>
+
+        <a asp-controller="Auth" asp-action="Login" class="btn btn-primary btn-lg">
+            <i data-lucide="log-in"></i> Login
+        </a>
+    </div>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>

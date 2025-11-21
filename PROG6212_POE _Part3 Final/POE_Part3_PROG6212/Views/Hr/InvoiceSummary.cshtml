@@ -1,0 +1,39 @@
+﻿@model IEnumerable<POE_Part2_PROG6212.Models.LecturerInvoiceSummary>
+@{
+    ViewData["Title"] = "Invoice Summary";
+}
+
+<h2 class="mb-4">Invoice Summary</h2>
+
+<div class="card card-dark p-3">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Lecturer</th>
+                <th>Total Hours</th>
+                <th>Total Amount (R)</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var row in Model)
+            {
+                <tr>
+                    <td>@row.LecturerName</td>
+                    <td>@row.TotalHours</td>
+                    <td>@row.TotalAmount.ToString("N2")</td>
+
+                    <td>
+                        <a asp-action="LecturerClaims" asp-route-id="@row.UserId"
+                           class="btn btn-sm btn-outline-light">
+                            <i data-lucide="eye"></i> View Claims
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script> lucide.createIcons(); </script>

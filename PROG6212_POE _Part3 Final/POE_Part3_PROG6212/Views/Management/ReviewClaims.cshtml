@@ -1,0 +1,61 @@
+﻿@model IEnumerable<POE_Part2_PROG6212.Models.Claim>
+@{
+    ViewData["Title"] = "Review Claims";
+}
+
+<h2 class="mb-4">Review Claims</h2>
+
+<div class="card card-dark p-3">
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>Lecturer</th>
+                <th>Date Worked</th>
+                <th>Hours</th>
+                <th>Activity</th>
+                <th>Total (R)</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>@c.User.FullName</td>
+                    <td>@c.DateWorked.ToString("yyyy-MM-dd")</td>
+                    <td>@c.HoursWorked</td>
+                    <td>@c.Activity</td>
+                    <td>@c.TotalAmount.ToString("N2")</td>
+                    <td>@c.Status</td>
+
+                    <td class="text-end">
+
+                        <!-- APPROVE BUTTON -->
+                        <form asp-action="Approve" asp-route-id="@c.Id" method="post"
+                              class="d-inline">
+                            <button class="btn btn-sm btn-success">
+                                <i data-lucide="check-circle"></i>
+                                Approve
+                            </button>
+                        </form>
+
+                        <!-- REJECT BUTTON -->
+                        <form asp-action="Reject" asp-route-id="@c.Id" method="post"
+                              class="d-inline">
+                            <button class="btn btn-sm btn-danger">
+                                <i data-lucide="x-circle"></i>
+                                Reject
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>

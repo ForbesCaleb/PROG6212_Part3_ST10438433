@@ -1,0 +1,18 @@
+﻿@using System.Security.Claims
+@{
+    var name = User.Identity?.Name ?? "User";
+    var role = User.FindFirstValue(ClaimTypes.Role) ?? "";
+}
+
+<div class="topbar">
+    <div>
+        <span class="text-light fw-bold">@name</span>
+        <span class="text-secondary">(@role)</span>
+    </div>
+
+    <form asp-controller="Auth" asp-action="Logout" method="post">
+        <button class="btn btn-sm btn-outline-light">
+            <i data-lucide="log-out"></i> Logout
+        </button>
+    </form>
+</div>

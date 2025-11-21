@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "HR Dashboard";
+}
+
+<h2 class="mb-4">HR Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card card-dark p-3 mb-3">
+            <h5>Total Lecturers</h5>
+            <p class="display-6">@ViewBag.TotalLecturers</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card card-dark p-3 mb-3">
+            <h5>Approved Claims</h5>
+            <p class="display-6 text-success">@ViewBag.TotalApprovedClaims</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card card-dark p-3 mb-3">
+            <h5>Total Approved Amount</h5>
+            <p class="display-6 text-info">R @ViewBag.TotalApprovedAmount.ToString("N2")</p>
+        </div>
+    </div>
+</div>
+
+<script> lucide.createIcons(); </script>
