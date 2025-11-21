@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D5D49919-3AAB-4C10-9AED-C07B71CC541C}|POE_Part3_PROG6212.csproj|c:\\users\\caleb\\onedrive\\desktop\\prog6212_part3_st10438433\\prog6212_poe _part3 final\\poe_part3_prog6212\\controllers\\managementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5D49919-3AAB-4C10-9AED-C07B71CC541C}|POE_Part3_PROG6212.csproj|solutionrelative:controllers\\managementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D5D49919-3AAB-4C10-9AED-C07B71CC541C}|POE_Part3_PROG6212.csproj|c:\\users\\caleb\\onedrive\\desktop\\prog6212_part3_st10438433\\prog6212_poe _part3 final\\poe_part3_prog6212\\controllers\\hrcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5D49919-3AAB-4C10-9AED-C07B71CC541C}|POE_Part3_PROG6212.csproj|solutionrelative:controllers\\hrcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,6 +31,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ManagementController.cs",
+              "DocumentMoniker": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\Controllers\\ManagementController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ManagementController.cs",
+              "ToolTip": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\Controllers\\ManagementController.cs",
+              "RelativeToolTip": "Controllers\\ManagementController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T17:14:43.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "HrController.cs",
               "DocumentMoniker": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\Controllers\\HrController.cs",
               "RelativeDocumentMoniker": "Controllers\\HrController.cs",
@@ -39,7 +56,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DashboardController.cs",
               "DocumentMoniker": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\Controllers\\DashboardController.cs",
               "RelativeDocumentMoniker": "Controllers\\DashboardController.cs",
