@@ -52,12 +52,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/caleb/OneDrive/Desktop/PROG6212_Part3_ST10438433/PROG6212_POE _Part3 Final/POE_Part3_PROG6212/Views/Hr/CreateLecturer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSHJcQ3JlYXRlTGVjdHVyZXIuY3NodG1s
+[C:/Users/caleb/OneDrive/Desktop/PROG6212_Part3_ST10438433/PROG6212_POE _Part3 Final/POE_Part3_PROG6212/Views/Hr/CreateUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSHJcQ3JlYXRlVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/caleb/OneDrive/Desktop/PROG6212_Part3_ST10438433/PROG6212_POE _Part3 Final/POE_Part3_PROG6212/Views/Hr/EditLecturer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSHJcRWRpdExlY3R1cmVyLmNzaHRtbA==
+[C:/Users/caleb/OneDrive/Desktop/PROG6212_Part3_ST10438433/PROG6212_POE _Part3 Final/POE_Part3_PROG6212/Views/Hr/EditUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSHJcRWRpdFVzZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/caleb/OneDrive/Desktop/PROG6212_Part3_ST10438433/PROG6212_POE _Part3 Final/POE_Part3_PROG6212/Views/Hr/Index.cshtml]
@@ -72,8 +72,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSHJcTGVjdHVyZXJDbGFpbXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/caleb/OneDrive/Desktop/PROG6212_Part3_ST10438433/PROG6212_POE _Part3 Final/POE_Part3_PROG6212/Views/Hr/Lecturers.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSHJcTGVjdHVyZXJzLmNzaHRtbA==
+[C:/Users/caleb/OneDrive/Desktop/PROG6212_Part3_ST10438433/PROG6212_POE _Part3 Final/POE_Part3_PROG6212/Views/Hr/Users.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSHJcVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/caleb/OneDrive/Desktop/PROG6212_Part3_ST10438433/PROG6212_POE _Part3 Final/POE_Part3_PROG6212/Views/Management/ReviewClaims.cshtml]

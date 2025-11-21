@@ -3,38 +3,36 @@
     ViewData["Title"] = "Login";
 }
 
-<div class="d-flex justify-content-center align-items-center" style="height:85vh;">
-    <div class="card card-dark shadow-lg p-4" style="width:420px;">
-        <h3 class="text-center text-light mb-4">
-            <i data-lucide="lock"></i> Sign In
-        </h3>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-lg p-4" style="width: 450px; border-radius: 12px;">
+        <h2 class="text-center mb-4">Sign In</h2>
 
         <form asp-action="Login" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
-            <input type="hidden" asp-for="ReturnUrl" />
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
             <div class="mb-3">
-                <label asp-for="Username" class="form-label text-light"></label>
-                <input asp-for="Username" class="form-control bg-dark text-light border-secondary" />
+                <label asp-for="Username" class="form-label" style="color:black; font-weight:600;"></label>
+                <input asp-for="Username" class="form-control" style="background:white; color:black; border:1px solid #ccc;" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label asp-for="Password" class="form-label text-light"></label>
-                <input asp-for="Password" type="password"
-                       class="form-control bg-dark text-light border-secondary" />
+                <label asp-for="Password" class="form-label" style="color:black; font-weight:600;"></label>
+                <input asp-for="Password" class="form-control" type="password"
+                       style="background:white; color:black; border:1px solid #ccc;" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-check mb-3">
                 <input asp-for="RememberMe" class="form-check-input" />
-                <label asp-for="RememberMe" class="form-check-label text-light"></label>
+                <label asp-for="RememberMe" class="form-check-label" style="color:black;"></label>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">
+            <button type="submit" class="btn btn-primary w-100"
+                    style="font-size:18px; padding:10px;">
                 <i data-lucide="log-in"></i> Login
             </button>
+
         </form>
     </div>
 </div>

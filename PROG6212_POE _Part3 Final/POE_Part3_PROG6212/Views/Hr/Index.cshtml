@@ -5,26 +5,66 @@
 <h2 class="mb-4">HR Dashboard</h2>
 
 <div class="row">
-    <div class="col-md-4">
-        <div class="card card-dark p-3 mb-3">
+
+    <div class="col-md-4 mb-3">
+        <div class="card card-dark p-3 text-center">
+            <h5>Total Users</h5>
+            <h1>@ViewBag.TotalUsers</h1>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card card-dark p-3 text-center">
             <h5>Total Lecturers</h5>
-            <p class="display-6">@ViewBag.TotalLecturers</p>
+            <h1>@ViewBag.TotalLecturers</h1>
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="card card-dark p-3 mb-3">
-            <h5>Approved Claims</h5>
-            <p class="display-6 text-success">@ViewBag.TotalApprovedClaims</p>
+    <div class="col-md-4 mb-3">
+        <div class="card card-dark p-3 text-center">
+            <h5>Total Claims</h5>
+            <h1>@ViewBag.TotalClaims</h1>
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="card card-dark p-3 mb-3">
-            <h5>Total Approved Amount</h5>
-            <p class="display-6 text-info">R @ViewBag.TotalApprovedAmount.ToString("N2")</p>
-        </div>
-    </div>
 </div>
 
-<script> lucide.createIcons(); </script>
+<div class="row">
+
+    <div class="col-md-4 mb-3">
+        <div class="card card-dark p-3 text-center">
+            <h5>Pending Claims</h5>
+            <h1>@ViewBag.PendingClaims</h1>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card card-dark p-3 text-center">
+            <h5>Approved Claims</h5>
+            <h1>@ViewBag.ApprovedClaims</h1>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card card-dark p-3 text-center">
+            <h5>Rejected Claims</h5>
+            <h1>@ViewBag.RejectedClaims</h1>
+        </div>
+    </div>
+
+</div>
+
+<h3 class="mt-5">Recent Users</h3>
+
+<div class="card card-dark p-3">
+    <ul class="list-group">
+        @foreach (var u in ViewBag.RecentUsers)
+        {
+            <li class="list-group-item bg-dark text-light">
+                @u.FullName (@u.Role)
+            </li>
+        }
+    </ul>
+</div>
+
+<script>lucide.createIcons();</script>

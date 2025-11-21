@@ -1,0 +1,52 @@
+﻿@model POE_Part2_PROG6212.Models.AppUser
+@{
+    ViewData["Title"] = "Create User";
+}
+
+<h2 class="mb-4">Create User</h2>
+
+<div class="card card-dark p-4">
+    <form asp-action="CreateUser" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label"></label>
+            <input asp-for="FullName" class="form-control bg-dark text-light border-secondary" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Username" class="form-label"></label>
+            <input asp-for="Username" class="form-control bg-dark text-light border-secondary" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" type="password" class="form-control bg-dark text-light border-secondary" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Role</label>
+            <select asp-for="Role" class="form-select bg-dark text-light border-secondary">
+                @foreach (var r in ViewBag.Roles as List<string>)
+                {
+                    <option value="@r">@r</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="HourlyRate" class="form-label"></label>
+            <input asp-for="HourlyRate" class="form-control bg-dark text-light border-secondary" />
+            <span asp-validation-for="HourlyRate" class="text-danger"></span>
+        </div>
+
+        <button class="btn btn-primary w-100">
+            Create User
+        </button>
+    </form>
+</div>
+
+<script> lucide.createIcons(); </script>

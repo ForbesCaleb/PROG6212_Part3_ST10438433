@@ -5,15 +5,26 @@ using POE_Part2_PROG6212.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ===== MVC =====
+// ===========================
+// MVC
+// ===========================
 builder.Services.AddControllersWithViews();
 
-// ===== SQL Server + EF Core =====
+// ===========================
+// SQL Server + EF Core
+// ===========================
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// ===== Cookie Authentication =====
+// ===========================
+// IHttpContextAccessor (FIXES YOUR ERROR)
+// ===========================
+builder.Services.AddHttpContextAccessor();
+
+// ===========================
+// Cookie Authentication
+// ===========================
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(o =>
     {
@@ -26,15 +37,21 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization();
 
-// ===== File Storage =====
+// ===========================
+// File Storage Service
+// ===========================
 builder.Services.AddSingleton<IFileStorage, LocalFileStorage>();
 
 var app = builder.Build();
 
-// ===== Seed DB =====
+// ===========================
+// Seed Database (Optional)
+// ===========================
 ApplicationDbSeeder.Seed(app.Services);
 
-// ===== Error Handling =====
+// ===========================
+// Error Handling
+// ===========================
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -47,24 +64,32 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Auto-redirect logged-in users away from welcome page
+// ===========================
+// Auto-redirect authenticated users away from homepage
+// ===========================
 app.Use(async (context, next) =>
 {
     var path = context.Request.Path.Value?.ToLowerInvariant();
+
     if (context.User.Identity?.IsAuthenticated == true &&
         (path == "/" || path == "/home" || path == "/home/index"))
     {
         context.Response.Redirect("/Dashboard/Index");
         return;
     }
+
     await next();
 });
 
-// ===== Routes =====
+// ===========================
+// Routes
+// ===========================
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

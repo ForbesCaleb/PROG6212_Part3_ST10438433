@@ -3,31 +3,35 @@
     ViewData["Title"] = "Lecturer Claims";
 }
 
-<h2 class="mb-4">Approved Claims</h2>
+<h2 class="mb-4">Lecturer Claims</h2>
 
 <div class="card card-dark p-3">
-    <table class="table table-dark table-bordered">
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th>Date Worked</th>
                 <th>Hours</th>
                 <th>Activity</th>
-                <th>Total Amount (R)</th>
+                <th>Total (R)</th>
+                <th>Status</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach (var c in Model)
+            @foreach (var claim in Model)
             {
                 <tr>
-                    <td>@c.DateWorked.ToString("yyyy-MM-dd")</td>
-                    <td>@c.HoursWorked</td>
-                    <td>@c.Activity</td>
-                    <td>@c.TotalAmount.ToString("N2")</td>
+                    <td>@claim.DateWorked.ToString("yyyy-MM-dd")</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>@claim.Activity</td>
+                    <td>@claim.TotalAmount.ToString("N2")</td>
+                    <td>@claim.Status</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
 
-<script> lucide.createIcons(); </script>
+<script>
+    lucide.createIcons();
+</script>

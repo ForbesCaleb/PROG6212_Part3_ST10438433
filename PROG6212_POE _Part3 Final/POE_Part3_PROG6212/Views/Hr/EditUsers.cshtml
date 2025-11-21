@@ -1,0 +1,56 @@
+﻿@model POE_Part2_PROG6212.Models.AppUser
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h2 class="mb-4">Edit User</h2>
+
+<div class="card card-dark p-4">
+
+    <form asp-action="EditUsers" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label"></label>
+            <input asp-for="FullName" class="form-control bg-dark text-light border-secondary" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Username" class="form-label"></label>
+            <input asp-for="Username" class="form-control bg-dark text-light border-secondary" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Role</label>
+            <select asp-for="Role" class="form-select bg-dark text-light border-secondary">
+                <option value="Lecturer">Lecturer</option>
+                <option value="ProgrammeCoordinator">Programme Coordinator</option>
+                <option value="AcademicManager">Academic Manager</option>
+                <option value="HR">HR</option>
+            </select>
+        </div>
+
+        @if (Model.Role == "Lecturer")
+        {
+            <div class="mb-3">
+                <label asp-for="HourlyRate" class="form-label"></label>
+                <input asp-for="HourlyRate" class="form-control bg-dark text-light border-secondary" />
+            </div>
+        }
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" class="form-control bg-dark text-light border-secondary" />
+            <div class="form-text text-secondary">Only enter a value to change the password</div>
+        </div>
+
+        <button class="btn btn-primary w-100">
+            <i data-lucide="save"></i> Update User
+        </button>
+
+    </form>
+</div>
+
+<script>lucide.createIcons();</script>
