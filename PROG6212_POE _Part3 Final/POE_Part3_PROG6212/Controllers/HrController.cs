@@ -4,9 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using POE_Part2_PROG6212.Data;
 using POE_Part2_PROG6212.Models;
 
-// Fix model aliasing
-using DbClaim = POE_Part2_PROG6212.Models.Claim;
-
 namespace POE_Part2_PROG6212.Controllers
 {
     [Authorize(Roles = "HR")]
@@ -22,122 +19,139 @@ namespace POE_Part2_PROG6212.Controllers
         // ========================= HR DASHBOARD =========================
         public async Task<IActionResult> Index()
         {
+            ViewBag.TotalUsers = await _db.Users.CountAsync();
             ViewBag.TotalLecturers = await _db.Users.CountAsync(u => u.Role == "Lecturer");
-
-            ViewBag.TotalApprovedClaims = await _db.Claims
-                .CountAsync(c => c.Status == ClaimStatus.Approved);
-
-            ViewBag.TotalApprovedAmount = await _db.Claims
-                .Where(c => c.Status == ClaimStatus.Approved)
-                .SumAsync(c => c.TotalAmount);
 
             return View("~/Views/Hr/Index.cshtml");
         }
 
-        // ========================= MANAGE LECTURERS =========================
-        public async Task<IActionResult> Lecturers()
+        // ========================= MANAGE ALL USERS =========================
+        public async Task<IActionResult> Users(string? role)
         {
-            var lecturers = await _db.Users
-                .Where(u => u.Role == "Lecturer")
-                .OrderBy(u => u.FullName)
-                .ToListAsync();
+            var usersQuery = _db.Users.AsQueryable();
 
-            return View("~/Views/Hr/Lecturers.cshtml", lecturers);
+            if (!string.IsNullOrWhiteSpace(role) && role != "All")
+            {
+                usersQuery = usersQuery.Where(u => u.Role == role);
+            }
+
+            ViewBag.SelectedRole = role ?? "All";
+
+            ViewBag.Roles = new List<string>
+            {
+                "All",
+                "Lecturer",
+                "ProgrammeCoordinator",
+                "AcademicManager",
+                "HR"
+            };
+
+            var users = await usersQuery.OrderBy(u => u.FullName).ToListAsync();
+
+            return View("~/Views/Hr/Users.cshtml", users);
         }
 
-        // --------------------- CREATE LECTURER (GET) ---------------------
+        // ========================= CREATE ANY USER =========================
         [HttpGet]
-        public IActionResult CreateLecturer()
+        public IActionResult CreateUser()
         {
-            return View("~/Views/Hr/CreateLecturer.cshtml");
+            ViewBag.Roles = new List<string>
+            {
+                "Lecturer",
+                "ProgrammeCoordinator",
+                "AcademicManager",
+                "HR"
+            };
+
+            return View("~/Views/Hr/CreateUser.cshtml");
         }
 
-        // --------------------- CREATE LECTURER (POST) ---------------------
         [HttpPost]
-        public async Task<IActionResult> CreateLecturer(AppUser user)
+        public async Task<IActionResult> CreateUser(AppUser user)
         {
             if (!ModelState.IsValid)
-                return View("~/Views/Hr/CreateLecturer.cshtml", user);
+            {
+                ViewBag.Roles = new List<string>
+                {
+                    "Lecturer",
+                    "ProgrammeCoordinator",
+                    "AcademicManager",
+                    "HR"
+                };
+                return View("~/Views/Hr/CreateUser.cshtml", user);
+            }
 
-            user.Role = "Lecturer"; // force correct role
-
-            // If no password supplied, default to username
             if (string.IsNullOrWhiteSpace(user.Password))
-                user.Password = user.Username;
+                user.Password = user.Username; // default password
 
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
 
-            TempData["Success"] = "Lecturer created successfully.";
-            return RedirectToAction("Lecturers");
+            TempData["Success"] = "User created successfully.";
+            return RedirectToAction("Users");
         }
 
-        // --------------------- EDIT LECTURER (GET) ---------------------
+        // ========================= EDIT ANY USER =========================
         [HttpGet]
-        public async Task<IActionResult> EditLecturer(int id)
+        public async Task<IActionResult> EditUser(int id)
         {
             var user = await _db.Users.FindAsync(id);
+            if (user == null) return NotFound();
 
-            if (user == null || user.Role != "Lecturer")
-                return NotFound();
+            ViewBag.Roles = new List<string>
+            {
+                "Lecturer",
+                "ProgrammeCoordinator",
+                "AcademicManager",
+                "HR"
+            };
 
-            return View("~/Views/Hr/EditLecturer.cshtml", user);
+            return View("~/Views/Hr/EditUser.cshtml", user);
         }
 
-        // --------------------- EDIT LECTURER (POST) ---------------------
         [HttpPost]
-        public async Task<IActionResult> EditLecturer(AppUser updated)
+        public async Task<IActionResult> EditUser(AppUser model)
         {
-            var user = await _db.Users.FindAsync(updated.Id);
-
-            if (user == null)
-                return NotFound();
+            var user = await _db.Users.FindAsync(model.Id);
+            if (user == null) return NotFound();
 
             if (!ModelState.IsValid)
-                return View("~/Views/Hr/EditLecturer.cshtml", updated);
+            {
+                ViewBag.Roles = new List<string>
+                {
+                    "Lecturer",
+                    "ProgrammeCoordinator",
+                    "AcademicManager",
+                    "HR"
+                };
+                return View("~/Views/Hr/EditUser.cshtml", model);
+            }
 
-            user.FullName = updated.FullName;
-            user.Username = updated.Username;
-            user.HourlyRate = updated.HourlyRate;
+            user.FullName = model.FullName;
+            user.Username = model.Username;
+            user.Role = model.Role;
+            user.HourlyRate = model.HourlyRate;
 
-            // Update password ONLY if provided
-            if (!string.IsNullOrWhiteSpace(updated.Password))
-                user.Password = updated.Password;
+            if (!string.IsNullOrWhiteSpace(model.Password))
+                user.Password = model.Password;
 
             await _db.SaveChangesAsync();
 
-            TempData["Success"] = "Lecturer updated successfully.";
-            return RedirectToAction("Lecturers");
+            TempData["Success"] = "User updated successfully.";
+            return RedirectToAction("Users");
         }
 
-        // ========================= INVOICE SUMMARY =========================
-        public async Task<IActionResult> InvoiceSummary()
+        // ========================= DELETE USER =========================
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            var result = await _db.Claims
-                .Where(c => c.Status == ClaimStatus.Approved)
-                .GroupBy(c => c.UserId)
-                .Select(g => new LecturerInvoiceSummary
-                {
-                    UserId = g.Key,
-                    LecturerName = g.First().User.FullName,
-                    TotalHours = g.Sum(c => c.HoursWorked),
-                    TotalAmount = g.Sum(c => c.TotalAmount)
-                })
-                .OrderBy(r => r.LecturerName)
-                .ToListAsync();
+            var user = await _db.Users.FindAsync(id);
+            if (user == null) return NotFound();
 
-            return View("~/Views/Hr/InvoiceSummary.cshtml", result);
-        }
+            _db.Users.Remove(user);
+            await _db.SaveChangesAsync();
 
-        // ========================= LECTURER CLAIMS =========================
-        public async Task<IActionResult> LecturerClaims(int id)
-        {
-            var claims = await _db.Claims
-                .Where(c => c.UserId == id && c.Status == ClaimStatus.Approved)
-                .OrderByDescending(c => c.DateWorked)
-                .ToListAsync();
-
-            return View("~/Views/Hr/LecturerClaims.cshtml", claims);
+            TempData["Success"] = "User deleted.";
+            return RedirectToAction("Users");
         }
     }
 }

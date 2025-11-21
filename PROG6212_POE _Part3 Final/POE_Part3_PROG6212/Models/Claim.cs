@@ -60,7 +60,3 @@ namespace POE_Part2_PROG6212.Models
         public DateTime UploadDate { get; set; } = DateTime.UtcNow;
     }
 }
-
-
-
-
