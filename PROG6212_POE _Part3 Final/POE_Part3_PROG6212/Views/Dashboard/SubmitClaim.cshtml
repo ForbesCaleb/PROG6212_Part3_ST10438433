@@ -1,16 +1,31 @@
-﻿@model SubmitClaimViewModel
+﻿@model POE_Part2_PROG6212.Models.Claim
+@using System.Globalization
+
 @{
     ViewData["Title"] = "Submit Claim";
+
+    // Fix hourly rate 450 turning into 45000
+    string safeRate = Model.HourlyRate
+        .ToString("0.##", CultureInfo.InvariantCulture);
+
+    // Preview total amount
+    var totalPreview = Model.HoursWorked * Model.HourlyRate;
 }
 
 <h2 class="mb-4">Submit Claim</h2>
 
 <div class="card card-dark p-4">
+
     <form asp-action="SubmitClaim" method="post" enctype="multipart/form-data">
 
         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
+        <!-- KEEP the UserId -->
+        <input type="hidden" asp-for="UserId" />
+
         <div class="row">
+
+            <!-- Date Worked -->
             <div class="col-md-4 mb-3">
                 <label asp-for="DateWorked" class="form-label"></label>
                 <input asp-for="DateWorked" type="date"
@@ -18,6 +33,7 @@
                 <span asp-validation-for="DateWorked" class="text-danger"></span>
             </div>
 
+            <!-- Hours Worked -->
             <div class="col-md-4 mb-3">
                 <label asp-for="HoursWorked" class="form-label"></label>
                 <input asp-for="HoursWorked"
@@ -25,13 +41,22 @@
                 <span asp-validation-for="HoursWorked" class="text-danger"></span>
             </div>
 
+            <!-- Hourly Rate FIXED -->
             <div class="col-md-4 mb-3">
                 <label asp-for="HourlyRate" class="form-label"></label>
-                <input asp-for="HourlyRate" readonly
-                       class="form-control bg-secondary text-light" />
+
+                <!-- Visible safe formatted input -->
+                <input value="@safeRate"
+                       class="form-control bg-secondary text-light"
+                       readonly />
+
+                <!-- Hidden real binding input -->
+                <input type="hidden" asp-for="HourlyRate" value="@safeRate" />
             </div>
+
         </div>
 
+        <!-- Activity -->
         <div class="mb-3">
             <label asp-for="Activity" class="form-label"></label>
             <input asp-for="Activity"
@@ -39,26 +64,33 @@
             <span asp-validation-for="Activity" class="text-danger"></span>
         </div>
 
+        <!-- File Upload -->
         <div class="mb-3">
-            <label asp-for="Document" class="form-label"></label>
-            <input asp-for="Document" type="file" class="form-control bg-dark text-light" />
+            <label class="form-label">Supporting document</label>
+            <input name="file" type="file"
+                   class="form-control bg-dark text-light" />
         </div>
 
+        <!-- Notes -->
         <div class="mb-3">
             <label asp-for="Notes" class="form-label"></label>
             <textarea asp-for="Notes"
                       class="form-control bg-dark text-light border-secondary"></textarea>
         </div>
 
+        <!-- Total Amount Preview -->
         <div class="mb-3">
             <label class="form-label">Calculated Total</label>
-            <input value="@Model.TotalAmount" readonly class="form-control bg-secondary text-light" />
+            <input value="@totalPreview.ToString("0.##", CultureInfo.InvariantCulture)"
+                   class="form-control bg-secondary text-light" readonly />
         </div>
 
-        <button class="btn btn-primary w-100">
+        <button type="submit" class="btn btn-primary w-100">
             <i data-lucide="send"></i> Submit Claim
         </button>
+
     </form>
+
 </div>
 
 <script>

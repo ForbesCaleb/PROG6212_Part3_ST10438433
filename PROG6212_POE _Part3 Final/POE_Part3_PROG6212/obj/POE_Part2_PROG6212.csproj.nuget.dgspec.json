@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\3\\POE_Part2_PROG6212.csproj": {}
+    "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\POE_Part2_PROG6212.csproj": {}
   },
   "projects": {
-    "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\3\\POE_Part2_PROG6212.csproj": {
+    "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\POE_Part2_PROG6212.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\3\\POE_Part2_PROG6212.csproj",
+        "projectUniqueName": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\POE_Part2_PROG6212.csproj",
         "projectName": "POE_Part2_PROG6212",
-        "projectPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\3\\POE_Part2_PROG6212.csproj",
+        "projectPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\POE_Part2_PROG6212.csproj",
         "packagesPath": "C:\\Users\\caleb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\3\\obj\\",
+        "outputPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part3_PROG6212\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

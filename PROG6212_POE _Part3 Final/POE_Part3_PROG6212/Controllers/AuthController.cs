@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using POE_Part2_PROG6212.Data;
 using POE_Part2_PROG6212.Models;
+using System.Globalization;
 using System.Security.Claims;
 
 namespace POE_Part2_PROG6212.Controllers
@@ -17,7 +18,7 @@ namespace POE_Part2_PROG6212.Controllers
             _db = db;
         }
 
-        // ================== LOGIN PAGE (GET) ==================
+        // ======================= LOGIN (GET) ==========================
         [HttpGet]
         public IActionResult Login(string? returnUrl = null)
         {
@@ -25,14 +26,13 @@ namespace POE_Part2_PROG6212.Controllers
                 new LoginViewModel { ReturnUrl = returnUrl });
         }
 
-        // ================== LOGIN (POST) ==================
+        // ======================= LOGIN (POST) ==========================
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("~/Views/Auth/Login.cshtml", model);
 
-            // Find user by username
             var user = await _db.Users
                 .SingleOrDefaultAsync(u => u.Username == model.Username);
 
@@ -42,14 +42,18 @@ namespace POE_Part2_PROG6212.Controllers
                 return View("~/Views/Auth/Login.cshtml", model);
             }
 
-            // Build Authentication Claims
+            // ===================== FIXED CLAIMS ======================
+            // Use FULL qualification so it does NOT conflict with your Claim model
             var claims = new List<System.Security.Claims.Claim>
             {
                 new System.Security.Claims.Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new System.Security.Claims.Claim(ClaimTypes.Name, user.FullName),
                 new System.Security.Claims.Claim(ClaimTypes.GivenName, user.Username),
                 new System.Security.Claims.Claim(ClaimTypes.Role, user.Role),
-                new System.Security.Claims.Claim("HourlyRate", user.HourlyRate.ToString())
+
+                // FIX: Prevent 450 → 45000 by forcing InvariantCulture formatting
+                new System.Security.Claims.Claim("HourlyRate",
+                        user.HourlyRate.ToString(CultureInfo.InvariantCulture))
             };
 
             var identity = new ClaimsIdentity(
@@ -64,17 +68,10 @@ namespace POE_Part2_PROG6212.Controllers
                     IsPersistent = model.RememberMe
                 });
 
-            // Redirect to return URL if valid
-            if (!string.IsNullOrWhiteSpace(model.ReturnUrl) &&
-                Url.IsLocalUrl(model.ReturnUrl))
-            {
-                return Redirect(model.ReturnUrl);
-            }
-
             return RedirectToAction("Index", "Dashboard");
         }
 
-        // ================== LOGOUT ==================
+        // ======================= LOGOUT ==========================
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -82,7 +79,7 @@ namespace POE_Part2_PROG6212.Controllers
             return RedirectToAction("Login");
         }
 
-        // ================== ACCESS DENIED ==================
+        // ======================= ACCESS DENIED ==========================
         public IActionResult Denied()
         {
             return View("~/Views/Auth/Denied.cshtml");

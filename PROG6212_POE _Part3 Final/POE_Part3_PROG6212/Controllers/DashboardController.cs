@@ -6,7 +6,7 @@ using POE_Part2_PROG6212.Models;
 using System.Globalization;
 using System.Security.Claims;
 
-// FIX: Claim model aliasing so no red lines
+// Aliases
 using DbClaim = POE_Part2_PROG6212.Models.Claim;
 using DbClaimDocument = POE_Part2_PROG6212.Models.ClaimDocument;
 
@@ -24,13 +24,13 @@ namespace POE_Part2_PROG6212.Controllers
             _files = files;
         }
 
-        // ================== DASHBOARD ==================
+        // ==================== DASHBOARD HOME ====================
         public async Task<IActionResult> Index()
         {
             var role = User.FindFirstValue(ClaimTypes.Role) ?? "";
             ViewBag.Role = role;
 
-            // -------------------- LECTURER --------------------
+            // ========= LECTURER DASHBOARD =========
             if (role == "Lecturer")
             {
                 var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -52,7 +52,7 @@ namespace POE_Part2_PROG6212.Controllers
                 return View("~/Views/Dashboard/Index.cshtml");
             }
 
-            // -------------------- HR --------------------
+            // ========= HR DASHBOARD =========
             if (role == "HR")
             {
                 ViewBag.TotalUsers = await _db.Users.CountAsync();
@@ -71,7 +71,7 @@ namespace POE_Part2_PROG6212.Controllers
                 return View("~/Views/Dashboard/Index.cshtml");
             }
 
-            // -------------------- PC & AM --------------------
+            // ========= PC & AM DASHBOARD =========
             if (role == "ProgrammeCoordinator" || role == "AcademicManager")
             {
                 ViewBag.PendingApproval = await _db.Claims.CountAsync(c =>
@@ -91,35 +91,41 @@ namespace POE_Part2_PROG6212.Controllers
             return View("~/Views/Dashboard/Index.cshtml");
         }
 
-        // ================== SUBMIT CLAIM ==================
+        // ==================== SUBMIT CLAIM (GET) ====================
         [Authorize(Roles = "Lecturer")]
         [HttpGet]
         public IActionResult SubmitClaim()
         {
-            var rateStr = User.FindFirst("HourlyRate")?.Value ?? "0";
-            decimal.TryParse(rateStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var rate);
+            var hourlyRateStr = User.FindFirst("HourlyRate")?.Value ?? "0";
+            decimal.TryParse(hourlyRateStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var rate);
 
             return View("~/Views/Dashboard/SubmitClaim.cshtml",
-                new SubmitClaimViewModel
+                new DbClaim
                 {
-                    HourlyRate = rate
+                    HourlyRate = rate,
+                    DateWorked = DateTime.Today
                 });
         }
 
+        // ==================== SUBMIT CLAIM (POST) ====================
         [Authorize(Roles = "Lecturer")]
         [HttpPost]
-        public async Task<IActionResult> SubmitClaim(SubmitClaimViewModel model)
+        public async Task<IActionResult> SubmitClaim([FromForm] DbClaim model, IFormFile? file)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            model.UserId = userId;
 
-            var rateClaim = User.FindFirst("HourlyRate")?.Value ?? "0";
-            decimal.TryParse(rateClaim, NumberStyles.Any, CultureInfo.InvariantCulture, out var rate);
+            // ====== FIX DECIMAL PARSING (comma issue "1,00" -> 1.00) ======
+            var hoursRaw = Request.Form["HoursWorked"].ToString();
+            decimal.TryParse(hoursRaw, NumberStyles.Any, CultureInfo.InvariantCulture, out var fixedHours);
+            model.HoursWorked = fixedHours;
+
+            // ====== Ensure HourlyRate comes from HR, not from the form ======
+            var rateStr = User.FindFirst("HourlyRate")?.Value ?? "0";
+            decimal.TryParse(rateStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var rate);
             model.HourlyRate = rate;
 
-            if (!ModelState.IsValid)
-                return View("~/Views/Dashboard/SubmitClaim.cshtml", model);
-
-            // Validate 180h monthly limit
+            // ====== Monthly hour limit ======
             var monthlyHours = await _db.Claims
                 .Where(c => c.UserId == userId &&
                             c.DateWorked.Year == model.DateWorked.Year &&
@@ -133,38 +139,30 @@ namespace POE_Part2_PROG6212.Controllers
                 return View("~/Views/Dashboard/SubmitClaim.cshtml", model);
             }
 
-            var claim = new DbClaim
-            {
-                UserId = userId,
-                DateWorked = model.DateWorked,
-                HoursWorked = model.HoursWorked,
-                Activity = model.Activity,
-                HourlyRate = model.HourlyRate,
-                TotalAmount = model.TotalAmount,
-                Notes = model.Notes,
-                Status = ClaimStatus.Submitted
-            };
+            // ====== Calculate total ======
+            model.TotalAmount = model.HoursWorked * model.HourlyRate;
 
-            // Save document if uploaded
-            if (model.Document != null)
+            // ====== Save Supporting Document ======
+            if (file != null)
             {
-                var saved = await _files.SaveAsync(model.Document);
-                claim.Documents.Add(new DbClaimDocument
+                var saved = await _files.SaveAsync(file);
+
+                model.Documents.Add(new DbClaimDocument
                 {
                     FileName = saved.FileName,
                     RelativePath = saved.RelativePath,
-                    UploadDate = saved.UploadDate
+                    UploadDate = DateTime.UtcNow
                 });
             }
 
-            _db.Claims.Add(claim);
+            _db.Claims.Add(model);
             await _db.SaveChangesAsync();
 
             TempData["Success"] = "Claim submitted successfully.";
             return RedirectToAction("Index");
         }
 
-        // ================== MY CLAIMS ==================
+        // ==================== MY CLAIMS ====================
         [Authorize(Roles = "Lecturer")]
         public async Task<IActionResult> MyClaims()
         {

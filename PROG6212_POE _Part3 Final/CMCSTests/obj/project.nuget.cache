@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6i5akpHgdvo=",
+  "dgSpecHash": "+NwGwNQUOdk=",
   "success": false,
-  "projectFilePath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
+  "projectFilePath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\caleb\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
     "C:\\Users\\caleb\\.nuget\\packages\\microsoft.codecoverage\\17.12.0\\microsoft.codecoverage.17.12.0.nupkg.sha512",
@@ -24,10 +24,10 @@
     {
       "code": "NU1104",
       "level": "Error",
-      "message": "Unable to find project 'C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj'. Check that the project reference is valid and that the project file exists.",
-      "projectPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
-      "filePath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
-      "libraryId": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj",
+      "message": "Unable to find project 'C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj'. Check that the project reference is valid and that the project file exists.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
+      "libraryId": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj",
       "targetGraphs": [
         "net9.0"
       ]

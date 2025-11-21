@@ -936,7 +936,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj",
+      "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
       "coverlet.collector >= 6.0.2",
       "xunit >= 2.9.3",
@@ -950,11 +950,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
+      "projectUniqueName": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
       "projectName": "CMCSTests",
-      "projectPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\CMCSTests\\CMCSTests.csproj",
       "packagesPath": "C:\\Users\\caleb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\CMCSTests\\obj\\",
+      "outputPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\CMCSTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -976,8 +976,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj": {
-              "projectPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj"
+            "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj": {
+              "projectPath": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj"
             }
           }
         }
@@ -1039,8 +1039,8 @@
     {
       "code": "NU1104",
       "level": "Error",
-      "message": "Unable to find project 'C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj'. Check that the project reference is valid and that the project file exists.",
-      "libraryId": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj",
+      "message": "Unable to find project 'C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\caleb\\OneDrive\\Desktop\\PROG6212_Part3_ST10438433\\PROG6212_POE _Part3 Final\\POE_Part2_PROG6212\\POE_Part2_PROG6212.csproj",
       "targetGraphs": [
         "net9.0"
       ]
